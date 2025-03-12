@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react";
-import { Github, Linkedin, Mail, MapPin, Calendar } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Calendar, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
+import { aboutData, socialLinks } from "../config/portfolio";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,201 +13,219 @@ const About = () => {
 
   return (
     <div className={`page-container ${isVisible ? "entered" : ""}`}>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 space-y-6">
-          <div>
-            <h1 className="text-3xl font-bold mb-2 animate-slide-down">Mukesh Cheemakurthi</h1>
-            <p className="text-lg text-muted-foreground mb-6 animate-slide-down opacity-90">
-              Master of Science in Computer Science
-            </p>
+      {/* Hero Section with Gradient Background */}
+      <div className="relative -mt-24 mb-12 overflow-hidden rounded-b-3xl glass-panel">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-background z-0"></div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        
+        <div className="max-w-4xl mx-auto px-6 py-24 md:py-32 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-slide-down bg-clip-text text-transparent bg-gradient-to-r from-primary to-muted-foreground">
+                {aboutData.name}
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground mb-6 animate-slide-down opacity-90 font-light">
+                {aboutData.title}
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mb-8 animate-slide-up">
+                <div className="flex items-center text-sm text-muted-foreground px-3 py-1.5 rounded-full bg-secondary/40 backdrop-blur-sm">
+                  <MapPin size={16} className="mr-2" />
+                  <span>{aboutData.location}</span>
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground px-3 py-1.5 rounded-full bg-secondary/40 backdrop-blur-sm">
+                  <Calendar size={16} className="mr-2" />
+                  <span>Available: {aboutData.availability}</span>
+                </div>
+              </div>
+              
+              <div className="flex gap-3 animate-slide-up delay-100">
+                <a
+                  href={socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-secondary/40 hover:bg-secondary/60 backdrop-blur-sm transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
+                <a
+                  href={socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-secondary/40 hover:bg-secondary/60 backdrop-blur-sm transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github size={20} />
+                </a>
+                <a
+                  href={`mailto:${socialLinks.email}`}
+                  className="p-2 rounded-full bg-secondary/40 hover:bg-secondary/60 backdrop-blur-sm transition-colors"
+                  aria-label="Email"
+                >
+                  <Mail size={20} />
+                </a>
+              </div>
+            </div>
             
-            <div className="flex flex-wrap gap-3 mb-8 animate-slide-up">
-              <div className="flex items-center text-sm text-muted-foreground">
-                <MapPin size={16} className="mr-1" />
-                <span>Boston, MA</span>
+            <div className="relative hidden md:block">
+              <div className="rounded-lg bg-gradient-to-br from-primary/20 via-accent/10 to-transparent p-1">
+                <div className="rounded-lg overflow-hidden glass-panel p-2">
+                  <div className="h-[260px] w-[260px] mx-auto relative overflow-hidden rounded-lg">
+                    <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 text-lg font-light">
+                      Your photo here
+                    </div>
+                    {/* Image placeholder - will be replaced by the user */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/10"></div>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Mail size={16} className="mr-1" />
-                <span>cheemakurthi.m@northeastern.edu</span>
-              </div>
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Calendar size={16} className="mr-1" />
-                <span>Available: May 2025 to Dec 2025</span>
-              </div>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 blur-2xl"></div>
+              <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full bg-gradient-to-br from-secondary/30 to-primary/30 blur-xl"></div>
             </div>
           </div>
+        </div>
+        
+        {/* Decorative Elements */}
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+        <div className="absolute top-1/3 right-10 w-12 h-12 rounded-full bg-secondary/20 blur-xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-16 h-16 rounded-full bg-primary/20 blur-xl"></div>
+      </div>
 
-          <div className="space-y-4 animate-slide-up delay-100">
-            <div>
-              <h2 className="section-heading">Education</h2>
-              <div className="glass-panel p-4">
-                <h3 className="font-medium">Northeastern University | Khoury College of Computer Sciences</h3>
-                <p className="text-sm text-muted-foreground">Master of Science, Computer Science | Sept 2024 – Present</p>
-                <p className="text-sm mt-2">
-                  Coursework: Foundations of AI, Programming Design Paradigms, Computer Vision, Algorithms
-                </p>
-                <p className="text-sm font-medium mt-1">GPA: 3.83</p>
-              </div>
-            </div>
-
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2 space-y-8">
+          <div className="space-y-8 animate-slide-up delay-200">
             <div>
               <h2 className="section-heading">Technical Knowledge</h2>
-              <div className="glass-panel p-4 space-y-2">
-                <div>
-                  <span className="text-sm font-medium">Programming:</span>
-                  <span className="text-sm text-muted-foreground ml-2">Python, Java, C++, TypeScript, JavaScript, Node.js</span>
-                </div>
-                <div>
-                  <span className="text-sm font-medium">Cloud & DevOps:</span>
-                  <span className="text-sm text-muted-foreground ml-2">AWS, GCP, Azure, Terraform, GitHub, Docker, Jenkins, Airflow, Kubernetes, Helm, YAML</span>
-                </div>
-                <div>
-                  <span className="text-sm font-medium">Backend:</span>
-                  <span className="text-sm text-muted-foreground ml-2">REST APIs, Microservices, Oracle, JSON, MySQL, SOAP, MongoDB, PostgreSQL, Redis</span>
-                </div>
-                <div>
-                  <span className="text-sm font-medium">AI/ML:</span>
-                  <span className="text-sm text-muted-foreground ml-2">SciPy, LLMs, AI Agents, BERT, GANs, Embeddings, GPT, Time Series</span>
-                </div>
-                <div>
-                  <span className="text-sm font-medium">Algorithms:</span>
-                  <span className="text-sm text-muted-foreground ml-2">Monte-Carlo Search, Local Search, Stochastic modelling, Dynamic Programming</span>
-                </div>
+              <div className="glass-panel p-6 space-y-3 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full"></div>
+                
+                {aboutData.skills.map((skill, index) => (
+                  <div key={index} className="relative z-10">
+                    <span className="text-sm font-medium">{skill.category}:</span>
+                    <span className="text-sm text-muted-foreground ml-2">{skill.items}</span>
+                  </div>
+                ))}
               </div>
+            </div>
+
+            <div>
+              <h2 className="section-heading">Education</h2>
+              {aboutData.education.map((edu, index) => (
+                <div key={index} className="glass-panel p-6 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/30 via-secondary/20 to-transparent"></div>
+                  <h3 className="font-medium">{edu.institution}</h3>
+                  <p className="text-sm text-muted-foreground">{edu.degree} | {edu.period}</p>
+                  <p className="text-sm mt-2">
+                    Coursework: {edu.coursework}
+                  </p>
+                  <p className="text-sm font-medium mt-1">GPA: {edu.gpa}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="animate-slide-up delay-200">
+          <div className="animate-slide-up delay-300">
             <h2 className="section-heading">Work Experience</h2>
-            <div className="space-y-4">
-              <div className="glass-panel p-4">
-                <div className="flex justify-between">
-                  <h3 className="font-medium">Khoury College of Computer Science</h3>
-                  <span className="text-sm text-muted-foreground">Boston, MA, USA</span>
+            <div className="space-y-6">
+              {aboutData.experience.map((exp, index) => (
+                <div key={index} className="glass-panel p-6 relative overflow-hidden group hover:shadow-md transition-shadow">
+                  <div className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-primary/40 to-transparent group-hover:from-primary/60 transition-colors"></div>
+                  
+                  <div className="flex justify-between">
+                    <h3 className="font-medium">{exp.company}</h3>
+                    <span className="text-sm text-muted-foreground">{exp.location}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <p className="text-sm text-muted-foreground">{exp.position}</p>
+                    <span className="text-sm text-muted-foreground">{exp.period}</span>
+                  </div>
+                  <ul className="mt-3 space-y-2">
+                    {exp.achievements.map((achievement, i) => (
+                      <li key={i} className="text-sm flex items-start">
+                        <span className="mr-2 text-primary">•</span>
+                        <span>{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="flex justify-between">
-                  <p className="text-sm text-muted-foreground">Teaching Assistant</p>
-                  <span className="text-sm text-muted-foreground">Sept 2024 – Dec 2024</span>
-                </div>
-                <ul className="mt-2 space-y-1">
-                  <li className="text-sm flex">
-                    <span className="mr-2">•</span>
-                    <span>Teaching Assistant for "Programming with Data (Python)" course with 300+ students</span>
-                  </li>
-                  <li className="text-sm flex">
-                    <span className="mr-2">•</span>
-                    <span>Conduct office hours, assisting 10+ students per session with Python programming & Data science</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="glass-panel p-4">
-                <div className="flex justify-between">
-                  <h3 className="font-medium">Walmart Global Tech</h3>
-                  <span className="text-sm text-muted-foreground">Bengaluru, KA, India</span>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-sm text-muted-foreground">Data Engineer 2</p>
-                  <span className="text-sm text-muted-foreground">July 2022 – Aug 2024</span>
-                </div>
-                <ul className="mt-2 space-y-1">
-                  <li className="text-sm flex">
-                    <span className="mr-2">•</span>
-                    <span>Developed real-time and large-scale ETL pipelines processing 1TB+ data using Apache Spark and Kafka</span>
-                  </li>
-                  <li className="text-sm flex">
-                    <span className="mr-2">•</span>
-                    <span>Enhanced Cloud parameters reducing pipeline runtime from 8 hours to 1 hour, cutting cloud costs</span>
-                  </li>
-                  <li className="text-sm flex">
-                    <span className="mr-2">•</span>
-                    <span>Integrated 5+ Order Management components and migrated 50+ Data Models from IBM Sterling to GCP</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="glass-panel p-4">
-                <div className="flex justify-between">
-                  <h3 className="font-medium">Walmart Global Tech</h3>
-                  <span className="text-sm text-muted-foreground">Bengaluru, KA, India</span>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-sm text-muted-foreground">Data Scientist (Internship)</p>
-                  <span className="text-sm text-muted-foreground">Jan 2022 – July 2022</span>
-                </div>
-                <ul className="mt-2 space-y-1">
-                  <li className="text-sm flex">
-                    <span className="mr-2">•</span>
-                    <span>Performed Time-Series analysis to forecast demand patterns, detect seasonality to improve pricing strategy</span>
-                  </li>
-                  <li className="text-sm flex">
-                    <span className="mr-2">•</span>
-                    <span>Utilized XGBoost to predict elasticity coefficients and applied Linear Optimization for demand modelling</span>
-                  </li>
-                  <li className="text-sm flex">
-                    <span className="mr-2">•</span>
-                    <span>Accelerated system components by implementing DFS algorithm, reducing processing time by 99%</span>
-                  </li>
-                </ul>
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
         <div className="md:col-span-1">
           <div className="sticky top-28 space-y-6">
-            <div className="glass-panel p-4 animate-slide-in-right">
-              <h2 className="section-heading">Connect</h2>
-              <div className="flex flex-col space-y-3 mt-3">
+            <div className="glass-panel p-6 animate-slide-in-right">
+              <h2 className="section-heading mb-4">Connect</h2>
+              <div className="flex flex-col space-y-4">
                 <a
-                  href="https://linkedin.com/in/mukesh003/"
+                  href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-sm hover:text-foreground/80 transition-colors"
+                  className="flex items-center text-sm hover:text-primary transition-colors group p-2 rounded-lg hover:bg-secondary/40"
                 >
-                  <Linkedin size={18} className="mr-2" />
+                  <Linkedin size={18} className="mr-3 opacity-70 group-hover:opacity-100" />
                   <span>LinkedIn</span>
+                  <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-70 transition-opacity" />
                 </a>
                 <a
-                  href="https://github.com/1-mukesh-1"
+                  href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-sm hover:text-foreground/80 transition-colors"
+                  className="flex items-center text-sm hover:text-primary transition-colors group p-2 rounded-lg hover:bg-secondary/40"
                 >
-                  <Github size={18} className="mr-2" />
+                  <Github size={18} className="mr-3 opacity-70 group-hover:opacity-100" />
                   <span>GitHub</span>
+                  <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-70 transition-opacity" />
                 </a>
                 <a
-                  href="mailto:cheemakurthi.m@northeastern.edu"
-                  className="flex items-center text-sm hover:text-foreground/80 transition-colors"
+                  href={`mailto:${socialLinks.email}`}
+                  className="flex items-center text-sm hover:text-primary transition-colors group p-2 rounded-lg hover:bg-secondary/40"
                 >
-                  <Mail size={18} className="mr-2" />
+                  <Mail size={18} className="mr-3 opacity-70 group-hover:opacity-100" />
                   <span>Email</span>
+                  <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-70 transition-opacity" />
                 </a>
               </div>
             </div>
 
-            <div className="glass-panel p-4 animate-slide-in-right delay-100">
-              <h2 className="section-heading">Quick Links</h2>
-              <div className="flex flex-col space-y-3 mt-3">
+            <div className="glass-panel p-6 animate-slide-in-right delay-100">
+              <h2 className="section-heading mb-4">Quick Links</h2>
+              <div className="flex flex-col space-y-3">
                 <Link
                   to="/projects"
-                  className="text-sm hover:text-foreground/80 transition-colors"
+                  className="flex items-center text-sm group p-2 rounded-lg hover:bg-secondary/40 hover:text-primary transition-colors"
                 >
-                  View Projects
+                  <span>View Projects</span>
+                  <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-70 transition-opacity" />
                 </Link>
                 <Link
                   to="/blog"
-                  className="text-sm hover:text-foreground/80 transition-colors"
+                  className="flex items-center text-sm group p-2 rounded-lg hover:bg-secondary/40 hover:text-primary transition-colors"
                 >
-                  Read Blog
+                  <span>Read Blog</span>
+                  <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-70 transition-opacity" />
                 </Link>
                 <Link
                   to="/contact"
-                  className="text-sm hover:text-foreground/80 transition-colors"
+                  className="flex items-center text-sm group p-2 rounded-lg hover:bg-secondary/40 hover:text-primary transition-colors"
                 >
-                  Contact Me
+                  <span>Contact Me</span>
+                  <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-70 transition-opacity" />
                 </Link>
+              </div>
+            </div>
+            
+            <div className="glass-panel p-6 animate-slide-in-right delay-200">
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground mb-3">Resume</p>
+                <a
+                  href="#"
+                  className="inline-block px-4 py-2 bg-primary/90 hover:bg-primary text-primary-foreground rounded-md text-sm transition-colors"
+                >
+                  Download PDF
+                </a>
               </div>
             </div>
           </div>
